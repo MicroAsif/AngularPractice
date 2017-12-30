@@ -1,4 +1,4 @@
-System.register(['angular2/core', './author.service'], function(exports_1, context_1) {
+System.register(['./auto-grow.directive', 'angular2/core', './author.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,10 +10,13 @@ System.register(['angular2/core', './author.service'], function(exports_1, conte
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, author_service_1;
+    var auto_grow_directive_1, core_1, author_service_1;
     var AuthorComponent;
     return {
         setters:[
+            function (auto_grow_directive_1_1) {
+                auto_grow_directive_1 = auto_grow_directive_1_1;
+            },
             function (core_1_1) {
                 core_1 = core_1_1;
             },
@@ -29,7 +32,8 @@ System.register(['angular2/core', './author.service'], function(exports_1, conte
                 AuthorComponent = __decorate([
                     core_1.Component({
                         selector: 'author',
-                        template: "\n        <p> {{title}}</p>\n        <ul> \n            <li *ngFor='#author of authors'> {{author}}</li>\n        </ul> \n    ",
+                        template: "\n        <p> {{title}}</p> <input type='text' autoGrow />\n       \n        <ul> \n            <li *ngFor='#author of authors'> {{author}}</li>\n        </ul> \n    ",
+                        directives: [auto_grow_directive_1.AutoGrowDirective],
                         providers: [author_service_1.AuthorService]
                     }), 
                     __metadata('design:paramtypes', [author_service_1.AuthorService])
