@@ -1,4 +1,4 @@
-System.register(['./authors.component', './favorite.component', 'angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,36 +10,32 @@ System.register(['./authors.component', './favorite.component', 'angular2/core']
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var authors_component_1, favorite_component_1, core_1;
-    var AppComponent;
+    var core_1;
+    var FavoriteComponent;
     return {
         setters:[
-            function (authors_component_1_1) {
-                authors_component_1 = authors_component_1_1;
-            },
-            function (favorite_component_1_1) {
-                favorite_component_1 = favorite_component_1_1;
-            },
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            AppComponent = (function () {
-                function AppComponent() {
-                    this.title = "Angular App";
+            FavoriteComponent = (function () {
+                function FavoriteComponent() {
+                    this.isFavorite = false;
                 }
-                AppComponent = __decorate([
+                FavoriteComponent.prototype.onClick = function () {
+                    this.isFavorite = !this.isFavorite;
+                };
+                FavoriteComponent = __decorate([
                     core_1.Component({
-                        selector: 'my-app',
-                        template: '<h1>Hello Angular</h1> <author></author><favorite></favorite>',
-                        directives: [favorite_component_1.FavoriteComponent, authors_component_1.AuthorComponent]
+                        selector: 'favorite',
+                        template: "\n    <i class=\"glyphicon\"\n    [class.glyphicon-star-empty]=\"!isFavorite\"\n    [class.glyphicon-star]=\"isFavorite\"\n    (click)=\"onClick()\">\n    </i>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
-                ], AppComponent);
-                return AppComponent;
+                ], FavoriteComponent);
+                return FavoriteComponent;
             }());
-            exports_1("AppComponent", AppComponent);
+            exports_1("FavoriteComponent", FavoriteComponent);
         }
     }
 });
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=favorite.component.js.map
