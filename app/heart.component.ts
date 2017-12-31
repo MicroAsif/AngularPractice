@@ -1,12 +1,11 @@
-import { Component } from "angular2/core";
-import { bufferCount } from "rxjs/operator/bufferCount";
+import { Component, Input } from "angular2/core";
 
 
 @Component({
     selector : 'heartgly', 
     template : `
         <p> Heart Component </p>
-        <i class="glyphicon glyphicon-heart " [style.color]= "isActive ? '#ccc' : 'deeppink'"  (click)="heartClick()"> </i> <span>  {{count}}</span>
+        <i class="glyphicon glyphicon-heart " [style.color]= "isActive ? 'deeppink' : '#ccc'"  (click)="heartClick()"> </i> <span>  {{count}}</span>
                 ` , 
     styles: [`
         .glyphicon {cursor: pointer;}
@@ -14,18 +13,11 @@ import { bufferCount } from "rxjs/operator/bufferCount";
 })
 
 export class HeartComponent {
-    count = 10; 
-    isActive = true; 
-    heartClick() { 
-        if (this.isActive) { 
-            this.isActive = false;
-            this.count = this.count + 1;
-        }
-        else { 
-            this.isActive = true; 
-            this.count = this.count -1;
-        }
-
+    @Input('total-like-count') count = 0; 
+    @Input('iLike') isActive = false; 
+    heartClick() {
+        this.isActive = !this.isActive;
+        this.count += this.isActive ? +1 : -1;
     }
 
 }

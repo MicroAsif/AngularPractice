@@ -30,11 +30,15 @@ System.register(['./authors.component', './favorite.component', "./heart.compone
             AppComponent = (function () {
                 function AppComponent() {
                     this.title = "Angular App";
+                    this.tweet = {
+                        total: 10,
+                        iLike: false
+                    };
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: '<h1>Hello Angular</h1> <author></author><favorite></favorite><heartgly></heartgly>',
+                        template: "\n                <h1>Hello Angular</h1>\n                 <author></author>\n                 <favorite></favorite>\n                 \n                 <heartgly [total-like-count]= \"tweet.total\" [iLike]=\"tweet.iLike\"></heartgly>\n               ",
                         directives: [favorite_component_1.FavoriteComponent, authors_component_1.AuthorComponent, heart_component_1.HeartComponent]
                     }), 
                     __metadata('design:paramtypes', [])

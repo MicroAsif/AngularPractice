@@ -5,10 +5,21 @@ import {Component} from 'angular2/core';
 
 @Component({
     selector: 'my-app',
-    template: '<h1>Hello Angular</h1> <author></author><favorite></favorite><heartgly></heartgly>',
+    template: `
+                <h1>Hello Angular</h1>
+                 <author></author>
+                 <favorite></favorite>
+                 
+                 <heartgly [total-like-count]= "tweet.total" [iLike]="tweet.iLike"></heartgly>
+               `,
     directives:[FavoriteComponent, AuthorComponent, HeartComponent]
 })
 export class AppComponent { 
 title = "Angular App"
+
+    tweet = { 
+        total : 10,
+        iLike : false
+    }
 
 }

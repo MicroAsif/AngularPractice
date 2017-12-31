@@ -20,23 +20,25 @@ System.register(["angular2/core"], function(exports_1, context_1) {
         execute: function() {
             HeartComponent = (function () {
                 function HeartComponent() {
-                    this.count = 10;
-                    this.isActive = true;
+                    this.count = 0;
+                    this.isActive = false;
                 }
                 HeartComponent.prototype.heartClick = function () {
-                    if (this.isActive) {
-                        this.isActive = false;
-                        this.count = this.count + 1;
-                    }
-                    else {
-                        this.isActive = true;
-                        this.count = this.count - 1;
-                    }
+                    this.isActive = !this.isActive;
+                    this.count += this.isActive ? +1 : -1;
                 };
+                __decorate([
+                    core_1.Input('total-like-count'), 
+                    __metadata('design:type', Object)
+                ], HeartComponent.prototype, "count", void 0);
+                __decorate([
+                    core_1.Input('iLike'), 
+                    __metadata('design:type', Object)
+                ], HeartComponent.prototype, "isActive", void 0);
                 HeartComponent = __decorate([
                     core_1.Component({
                         selector: 'heartgly',
-                        template: "\n        <p> Heart Component </p>\n        <i class=\"glyphicon glyphicon-heart \" [style.color]= \"isActive ? '#ccc' : 'deeppink'\"  (click)=\"heartClick()\"> </i> <span>  {{count}}</span>\n                ",
+                        template: "\n        <p> Heart Component </p>\n        <i class=\"glyphicon glyphicon-heart \" [style.color]= \"isActive ? 'deeppink' : '#ccc'\"  (click)=\"heartClick()\"> </i> <span>  {{count}}</span>\n                ",
                         styles: ["\n        .glyphicon {cursor: pointer;}\n    "]
                     }), 
                     __metadata('design:paramtypes', [])
