@@ -1,3 +1,4 @@
+import { ZippyComponent } from './zippy.component';
 import { AuthorComponent } from './authors.component';
 import { FavoriteComponent } from './favorite.component'; 
 import { HeartComponent } from "./heart.component";
@@ -15,8 +16,15 @@ import { TweetComponent } from './tweet.component';
                  <heartgly [total-like-count]= "tweet.total" [iLike]="tweet.iLike"></heartgly>
                  <vote [count]="post.voteCount" [myVote]="post.myVote" (vote)="voteChange($event)"></vote>
                  <tweet> </tweet>
+                 <zippy  *ngFor="#p of panels">
+                    
+                        <div class="heading"> {{p.head}}</div>
+                        <div class="body">{{p.content}}</div>
+                    
+                    
+                 </zippy>
                `,
-    directives:[FavoriteComponent, AuthorComponent, HeartComponent, VoteComponent, TweetComponent]
+    directives:[FavoriteComponent, AuthorComponent, HeartComponent, VoteComponent, TweetComponent, ZippyComponent]
 })
 export class AppComponent { 
 title = "Angular App"
@@ -34,5 +42,15 @@ title = "Angular App"
     voteChange($event){
         console.log($event);
     }
+
+    panels = [{ 
+        head : "hello heading 1", 
+        content : "Content heere"
+    },
+    {
+        head : "hello heading 2", 
+        content : "Content heere"
+    }]
+
 
 }
