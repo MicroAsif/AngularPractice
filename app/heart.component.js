@@ -38,7 +38,7 @@ System.register(["angular2/core"], function(exports_1, context_1) {
                 HeartComponent = __decorate([
                     core_1.Component({
                         selector: 'heartgly',
-                        template: "\n        <p> Heart Component </p>\n        <i class=\"glyphicon glyphicon-heart \" [style.color]= \"isActive ? 'deeppink' : '#ccc'\"  (click)=\"heartClick()\"> </i> <span>  {{count}}</span>\n                ",
+                        template: "\n        <i class=\"glyphicon glyphicon-heart \" [style.color]= \"isActive ? 'deeppink' : '#ccc'\"  (click)=\"heartClick()\"> </i> <span>  {{count}}</span>\n                ",
                         styles: ["\n        .glyphicon {cursor: pointer;}\n    "]
                     }), 
                     __metadata('design:paramtypes', [])

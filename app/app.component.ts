@@ -3,6 +3,7 @@ import { FavoriteComponent } from './favorite.component';
 import { HeartComponent } from "./heart.component";
 import {Component} from 'angular2/core';
 import { VoteComponent } from './vote.component';
+import { TweetComponent } from './tweet.component';
 
 @Component({
     selector: 'my-app',
@@ -13,8 +14,9 @@ import { VoteComponent } from './vote.component';
                  
                  <heartgly [total-like-count]= "tweet.total" [iLike]="tweet.iLike"></heartgly>
                  <vote [count]="post.voteCount" [myVote]="post.myVote" (vote)="voteChange($event)"></vote>
+                 <tweet> </tweet>
                `,
-    directives:[FavoriteComponent, AuthorComponent, HeartComponent, VoteComponent]
+    directives:[FavoriteComponent, AuthorComponent, HeartComponent, VoteComponent, TweetComponent]
 })
 export class AppComponent { 
 title = "Angular App"

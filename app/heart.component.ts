@@ -4,7 +4,6 @@ import { Component, Input } from "angular2/core";
 @Component({
     selector : 'heartgly', 
     template : `
-        <p> Heart Component </p>
         <i class="glyphicon glyphicon-heart " [style.color]= "isActive ? 'deeppink' : '#ccc'"  (click)="heartClick()"> </i> <span>  {{count}}</span>
                 ` , 
     styles: [`
