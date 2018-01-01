@@ -1,4 +1,4 @@
-System.register(['./authors.component', './favorite.component', "./heart.component", 'angular2/core'], function(exports_1, context_1) {
+System.register(['./authors.component', './favorite.component', "./heart.component", 'angular2/core', './vote.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['./authors.component', './favorite.component', "./heart.compone
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var authors_component_1, favorite_component_1, heart_component_1, core_1;
+    var authors_component_1, favorite_component_1, heart_component_1, core_1, vote_component_1;
     var AppComponent;
     return {
         setters:[
@@ -25,6 +25,9 @@ System.register(['./authors.component', './favorite.component', "./heart.compone
             },
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (vote_component_1_1) {
+                vote_component_1 = vote_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -34,12 +37,19 @@ System.register(['./authors.component', './favorite.component', "./heart.compone
                         total: 10,
                         iLike: false
                     };
+                    this.post = {
+                        voteCount: 10,
+                        myVote: 0
+                    };
                 }
+                AppComponent.prototype.voteChange = function ($event) {
+                    console.log($event);
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n                <h1>Hello Angular</h1>\n                 <author></author>\n                 <favorite></favorite>\n                 \n                 <heartgly [total-like-count]= \"tweet.total\" [iLike]=\"tweet.iLike\"></heartgly>\n               ",
-                        directives: [favorite_component_1.FavoriteComponent, authors_component_1.AuthorComponent, heart_component_1.HeartComponent]
+                        template: "\n                <h1>Hello Angular</h1>\n                 <author></author>\n                 <favorite></favorite>\n                 \n                 <heartgly [total-like-count]= \"tweet.total\" [iLike]=\"tweet.iLike\"></heartgly>\n                 <vote [count]=\"post.voteCount\" [myVote]=\"post.myVote\" (vote)=\"voteChange($event)\"></vote>\n               ",
+                        directives: [favorite_component_1.FavoriteComponent, authors_component_1.AuthorComponent, heart_component_1.HeartComponent, vote_component_1.VoteComponent]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
