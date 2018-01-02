@@ -1,0 +1,57 @@
+<form #f="ngForm" (ngSubmit)="onSubscription(f.form)">
+    <div class="form-group">
+        <label for="">Name</label>
+        <input 
+            ngControl="name" 
+            #name="ngForm" 
+            id="name" 
+            type="text" 
+            class="form-control"
+            required
+            minlength="3">
+            <div *ngIf="name.touched && name.errors">
+                <div 
+                    class="alert alert-danger" 
+                    *ngIf="name.errors.required">
+                    Name is required.
+                </div>
+                <div
+                    class="alert alert-danger"
+                    *ngIf="name.errors.minlength">
+                    Name should be minimum {{ name.errors.minlength.requiredLength }} characters.
+                </div>
+                </div>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+            ngControl="email" 
+            #email="ngForm" 
+            id="email" 
+            type="email" 
+            class="form-control"
+            required>
+        <div class="alert alert-danger" 
+            *ngIf="email.touched && !email.valid">
+            Email field is required!
+        </div>    
+    </div>
+    <div class="form-group">
+        <label for="subscription">Subscription</label>
+        <select 
+            ngControl="subscription" 
+            #subscription="ngForm" 
+            id="subscription" 
+            class="form-control" 
+            required>
+            <option value=""></option>
+            <option *ngFor="#subscription of subscriptions" value="{{ subscription.id }}">
+                {{ subscription.label }}
+            </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="subscription.touched && !subscription.valid">
+            Subscription field is required!
+        </div> 
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Save</button>
+</form>

@@ -5,6 +5,7 @@ import { HeartComponent } from "./heart.component";
 import {Component} from 'angular2/core';
 import { VoteComponent } from './vote.component';
 import { TweetComponent } from './tweet.component';
+import { SubscriptionFormComponent } from './subscription-form.component';
 
 @Component({
     selector: 'my-app',
@@ -23,8 +24,9 @@ import { TweetComponent } from './tweet.component';
                     
                     
                  </zippy>
+                 <subscription-form></subscription-form>
                `,
-    directives:[FavoriteComponent, AuthorComponent, HeartComponent, VoteComponent, TweetComponent, ZippyComponent]
+    directives:[FavoriteComponent, AuthorComponent, HeartComponent, VoteComponent, TweetComponent, ZippyComponent, SubscriptionFormComponent]
 })
 export class AppComponent { 
 title = "Angular App"
