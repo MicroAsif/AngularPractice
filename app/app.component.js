@@ -1,4 +1,4 @@
-System.register(['./zippy.component', './authors.component', './favorite.component', "./heart.component", 'angular2/core', './vote.component', './tweet.component', './subscription-form.component'], function(exports_1, context_1) {
+System.register(['./zippy.component', './authors.component', './favorite.component', "./heart.component", 'angular2/core', './vote.component', './tweet.component', './subscription-form.component', './changepassword.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['./zippy.component', './authors.component', './favorite.compone
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var zippy_component_1, authors_component_1, favorite_component_1, heart_component_1, core_1, vote_component_1, tweet_component_1, subscription_form_component_1;
+    var zippy_component_1, authors_component_1, favorite_component_1, heart_component_1, core_1, vote_component_1, tweet_component_1, subscription_form_component_1, changepassword_component_1;
     var AppComponent;
     return {
         setters:[
@@ -37,6 +37,9 @@ System.register(['./zippy.component', './authors.component', './favorite.compone
             },
             function (subscription_form_component_1_1) {
                 subscription_form_component_1 = subscription_form_component_1_1;
+            },
+            function (changepassword_component_1_1) {
+                changepassword_component_1 = changepassword_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -65,8 +68,10 @@ System.register(['./zippy.component', './authors.component', './favorite.compone
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n                <h1>Hello Angular</h1>\n                 <author></author>\n                 <favorite></favorite>\n                 \n                 <heartgly [total-like-count]= \"tweet.total\" [iLike]=\"tweet.iLike\"></heartgly>\n                 <vote [count]=\"post.voteCount\" [myVote]=\"post.myVote\" (vote)=\"voteChange($event)\"></vote>\n                 <tweet> </tweet>\n                 <zippy  *ngFor=\"#p of panels\">\n                    \n                        <div class=\"heading\"> {{p.head}}</div>\n                        <div class=\"body\">{{p.content}}</div>\n                    \n                    \n                 </zippy>\n                 <subscription-form></subscription-form>\n               ",
-                        directives: [favorite_component_1.FavoriteComponent, authors_component_1.AuthorComponent, heart_component_1.HeartComponent, vote_component_1.VoteComponent, tweet_component_1.TweetComponent, zippy_component_1.ZippyComponent, subscription_form_component_1.SubscriptionFormComponent]
+                        template: "\n                <h1>Hello Angular</h1>\n                 <author></author>\n                 <favorite></favorite>\n                 \n                 <heartgly [total-like-count]= \"tweet.total\" [iLike]=\"tweet.iLike\"></heartgly>\n                 <vote [count]=\"post.voteCount\" [myVote]=\"post.myVote\" (vote)=\"voteChange($event)\"></vote>\n                 <tweet> </tweet>\n                 <zippy  *ngFor=\"#p of panels\">\n                    \n                        <div class=\"heading\"> {{p.head}}</div>\n                        <div class=\"body\">{{p.content}}</div>\n                    \n                    \n                 </zippy>\n                <subscription-form></subscription-form>\n                 <change-pass></change-pass>\n               ",
+                        directives: [favorite_component_1.FavoriteComponent, authors_component_1.AuthorComponent, heart_component_1.HeartComponent,
+                            vote_component_1.VoteComponent, tweet_component_1.TweetComponent, zippy_component_1.ZippyComponent,
+                            subscription_form_component_1.SubscriptionFormComponent, changepassword_component_1.ChangePasswordComponent]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
