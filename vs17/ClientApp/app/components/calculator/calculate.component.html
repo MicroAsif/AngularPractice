@@ -1,0 +1,54 @@
+﻿<h1>Calculator Using Angular & TypeScript</h1>
+
+<br />
+<div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label>First Number: </label>
+        </div>
+        <div>
+        </div>
+        <div class="col-sm-4">
+            <input [(ngModel)]="firstNumber" type="number" class="form-control" placeholder="Enter First Number">
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-4">
+            <label>Second Number: </label>
+        </div>
+        <div class="col-sm-4">
+            <input  [(ngModel)]="secondNumber" class="form-control" type="number" placeholder="Enter Second Number">
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-4">
+            <label>Result: </label>
+        </div>
+        <div class="col-sm-4">
+            <label>{{result}} </label>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-sm-5">
+
+        </div>
+        <div class="col-sm-1">
+            <button type="button"  (click)="add()" class="btn btn-primary">Add (∑)</button>
+        </div>
+
+        <div class="col-sm-1">
+            <button type="button" (click)="sub()" class="btn btn-primary">Sub (−)</button>
+        </div>
+
+        <div class="col-sm-1">
+            <button type="button" (click)="mult()" class="btn btn-primary">Mult (∗)</button>
+        </div>
+
+        <div class="col-sm-3">
+        </div>
+    </div>
+</div>  
