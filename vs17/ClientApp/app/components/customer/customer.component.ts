@@ -11,6 +11,7 @@ import { CUSTOMERS } from './customer.service';
 export class CustomerComponent {
     /** customer ctor */
     customers: customer[];
+    p: number = 1; 
     constructor() {
         this.customers = CUSTOMERS;
     }

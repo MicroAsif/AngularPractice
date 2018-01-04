@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';  
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -24,6 +25,7 @@ import { CustomerComponent } from './components/customer/customer.component';
     ],
     imports: [
         CommonModule,
+        NgxPaginationModule,
         HttpModule,
         FormsModule,
         RouterModule.forRoot([
