@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { CalculateComponent } from './components/calculator/calculate.component';
+import { CustomerComponent } from './components/customer/customer.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { CalculateComponent } from './components/calculator/calculate.component'
         CounterComponent,
         FetchDataComponent,
         HomeComponent, 
-        CalculateComponent
+        CalculateComponent, 
+        CustomerComponent
     ],
     imports: [
         CommonModule,
@@ -30,6 +32,7 @@ import { CalculateComponent } from './components/calculator/calculate.component'
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'calculator', component: CalculateComponent },
+            { path: 'customer', component: CustomerComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
