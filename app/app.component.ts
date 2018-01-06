@@ -6,7 +6,7 @@ import {Component} from 'angular2/core';
 import { VoteComponent } from './vote.component';
 import { TweetComponent } from './tweet.component';
 import { SubscriptionFormComponent } from './subscription-form.component';
-import { ChangePasswordComponent } from './changepassword.component';
+import { ChangePasswordFormComponent } from './changepassword.component';
 
 @Component({
     selector: 'my-app',
@@ -26,11 +26,11 @@ import { ChangePasswordComponent } from './changepassword.component';
                     
                  </zippy>
                 <subscription-form></subscription-form>
-                 <change-pass></change-pass>
+                 <change-password-form></change-password-form>
                `,
     directives:[FavoriteComponent, AuthorComponent, HeartComponent, 
                 VoteComponent, TweetComponent, ZippyComponent, 
-                SubscriptionFormComponent, ChangePasswordComponent]
+                SubscriptionFormComponent, ChangePasswordFormComponent]
 })
 export class AppComponent { 
 title = "Angular App"
