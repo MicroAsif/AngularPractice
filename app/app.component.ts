@@ -1,3 +1,4 @@
+import { RxAdvantureComponent } from './rxadventure.component';
 import { ZippyComponent } from './zippy.component';
 import { AuthorComponent } from './authors.component';
 import { FavoriteComponent } from './favorite.component'; 
@@ -12,6 +13,8 @@ import { ChangePasswordFormComponent } from './changepassword.component';
     selector: 'my-app',
     template: `
                 <h1>Hello Angular</h1>
+                <Rx-Practice> </Rx-Practice>
+                <br/> 
                  <author></author>
                  <favorite></favorite>
                  
@@ -30,7 +33,7 @@ import { ChangePasswordFormComponent } from './changepassword.component';
                `,
     directives:[FavoriteComponent, AuthorComponent, HeartComponent, 
                 VoteComponent, TweetComponent, ZippyComponent, 
-                SubscriptionFormComponent, ChangePasswordFormComponent]
+                SubscriptionFormComponent, ChangePasswordFormComponent, RxAdvantureComponent]
 })
 export class AppComponent { 
 title = "Angular App"
