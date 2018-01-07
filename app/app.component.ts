@@ -16,6 +16,7 @@ import { GithubComponent } from './github.component';
                 <h1>Hello Angular</h1>
                 <br/>
                  <github></github>
+                 <br/> <br/> 
                 <Rx-Practice> </Rx-Practice>
                 <br/> 
                  <author></author>

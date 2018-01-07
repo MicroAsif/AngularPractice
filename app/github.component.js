@@ -26,18 +26,20 @@ System.register(["angular2/core", "./github.service", "angular2/http"], function
         execute: function() {
             GithubComponent = (function () {
                 function GithubComponent(githubService) {
+                    var _this = this;
                     this.githubService = githubService;
                     this.users = {};
                     this.followers = [];
                     this.users = this.githubService.getProfile()
-                        .subscribe(function (profile) { return console.log(profile); });
+                        .subscribe(function (profile) { return _this.users = profile; });
                     this.githubService.getFollowers()
-                        .subscribe(function (followes) { return console.log(followes); });
+                        .subscribe(function (followes) { return _this.followers = followes; });
                 }
                 GithubComponent = __decorate([
                     core_1.Component({
                         selector: 'github',
-                        template: "    \n                <p> {{users.login}}</p>  \n                    \n                ",
+                        template: "  \n\n                <div class=\"media\" >\n                    <div> \n                    <div class=\"media-left\">\n                        <a href=\"#\">\n                        <img class=\"media-object\" [src]=\"users.avatar_url\" alt=\"...\">\n                        </a>\n                    </div>\n                    <div class=\"media-body\">\n                        <h4 class=\"media-heading\"> {{users.name}} <span class=\"user\"> {{users.login}}</span></h4>\n                        <p> {{users.bio}} </p>\n                    </div>\n                    </div>\n                </div>\n                \n                <h3> my followers </h3>\n                <hr/>\n                <div class=\"media\" >\n                    <div *ngFor='#f of followers'> \n                    <div class=\"media-left\">\n                        <a href=\"#\">\n                        <img class=\"media-object\" [src]=\"f.avatar_url\" alt=\"...\">\n                        </a>\n                    </div>\n                    <div class=\"media-body\">\n                        <h4 class=\"media-heading\"> {{f.login}}</h4>\n                    </div>\n                    </div>\n                </div>\n\n              \n\n                    \n                ",
+                        styles: ["\n            img { \n                height : 100px;\n                margin : 2px;\n            }\n            .user { \n                color : #ccc;\n            }\n    "],
                         providers: [github_service_1.GithubService, http_1.HTTP_PROVIDERS]
                     }), 
                     __metadata('design:paramtypes', [github_service_1.GithubService])
