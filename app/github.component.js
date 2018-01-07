@@ -27,13 +27,17 @@ System.register(["angular2/core", "./github.service", "angular2/http"], function
             GithubComponent = (function () {
                 function GithubComponent(githubService) {
                     this.githubService = githubService;
-                    this.githubService.getFollowers()
+                    this.users = {};
+                    this.followers = [];
+                    this.users = this.githubService.getProfile()
                         .subscribe(function (profile) { return console.log(profile); });
+                    this.githubService.getFollowers()
+                        .subscribe(function (followes) { return console.log(followes); });
                 }
                 GithubComponent = __decorate([
                     core_1.Component({
                         selector: 'github',
-                        template: "\n                    \n                ",
+                        template: "    \n                <p> {{users.login}}</p>  \n                    \n                ",
                         providers: [github_service_1.GithubService, http_1.HTTP_PROVIDERS]
                     }), 
                     __metadata('design:paramtypes', [github_service_1.GithubService])

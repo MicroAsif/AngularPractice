@@ -15,7 +15,7 @@ export class GithubService {
     }
 
     getFollowers() { 
-       return  this.http.get(this._follow).map(fol => fol.json());
+       return  this.http.get(this._follow).map(followers => followers.json());
     }
 
 }

@@ -32,7 +32,7 @@ System.register(["angular2/http", "angular2/core", "rxjs/add/operator/map"], fun
                     return this.http.get(this._baseUrl).map(function (user) { return user.json(); });
                 };
                 GithubService.prototype.getFollowers = function () {
-                    return this.http.get(this._follow).map(function (fol) { return fol.json(); });
+                    return this.http.get(this._follow).map(function (followers) { return followers.json(); });
                 };
                 GithubService = __decorate([
                     core_1.Injectable(), 

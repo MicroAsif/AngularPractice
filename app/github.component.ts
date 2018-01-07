@@ -5,15 +5,22 @@ import {HTTP_PROVIDERS} from "angular2/http"
 
 @Component({
     selector : 'github', 
-    template : `
+    template : `    
+                <p> {{users.login}}</p>  
                     
                 `, 
     providers :[GithubService, HTTP_PROVIDERS]
 })
 
 export class GithubComponent { 
-    constructor(private githubService : GithubService){ 
+    users ={ };
+    followers = [];    
+     constructor(private githubService : GithubService){
+
+        this.users = this.githubService.getProfile()
+        .subscribe(profile  => console.log(profile));
+
          this.githubService.getFollowers()
-        .subscribe(profile => console.log(profile));
+        .subscribe(followes  => console.log(followes));
     }
 }
