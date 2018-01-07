@@ -8,11 +8,14 @@ import { VoteComponent } from './vote.component';
 import { TweetComponent } from './tweet.component';
 import { SubscriptionFormComponent } from './subscription-form.component';
 import { ChangePasswordFormComponent } from './changepassword.component';
+import { GithubComponent } from './github.component';
 
 @Component({
     selector: 'my-app',
     template: `
                 <h1>Hello Angular</h1>
+                <br/>
+                 <github></github>
                 <Rx-Practice> </Rx-Practice>
                 <br/> 
                  <author></author>
@@ -33,7 +36,7 @@ import { ChangePasswordFormComponent } from './changepassword.component';
                `,
     directives:[FavoriteComponent, AuthorComponent, HeartComponent, 
                 VoteComponent, TweetComponent, ZippyComponent, 
-                SubscriptionFormComponent, ChangePasswordFormComponent, RxAdvantureComponent]
+                SubscriptionFormComponent, ChangePasswordFormComponent, RxAdvantureComponent, GithubComponent]
 })
 export class AppComponent { 
 title = "Angular App"
