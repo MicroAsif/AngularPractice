@@ -1,4 +1,4 @@
-System.register(['./rxadventure.component', './zippy.component', './authors.component', './favorite.component', "./heart.component", 'angular2/core', './vote.component', './tweet.component', './subscription-form.component', './changepassword.component', './github.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './rxadventure.component', './zippy.component', './authors.component', './favorite.component', "./heart.component", './vote.component', './tweet.component', './subscription-form.component', './changepassword.component', './github.component', "angular2/router", "./year.component", "./month.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,10 +10,13 @@ System.register(['./rxadventure.component', './zippy.component', './authors.comp
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var rxadventure_component_1, zippy_component_1, authors_component_1, favorite_component_1, heart_component_1, core_1, vote_component_1, tweet_component_1, subscription_form_component_1, changepassword_component_1, github_component_1;
+    var core_1, rxadventure_component_1, zippy_component_1, authors_component_1, favorite_component_1, heart_component_1, vote_component_1, tweet_component_1, subscription_form_component_1, changepassword_component_1, github_component_1, router_1, year_component_1, month_component_1;
     var AppComponent;
     return {
         setters:[
+            function (core_1_1) {
+                core_1 = core_1_1;
+            },
             function (rxadventure_component_1_1) {
                 rxadventure_component_1 = rxadventure_component_1_1;
             },
@@ -29,9 +32,6 @@ System.register(['./rxadventure.component', './zippy.component', './authors.comp
             function (heart_component_1_1) {
                 heart_component_1 = heart_component_1_1;
             },
-            function (core_1_1) {
-                core_1 = core_1_1;
-            },
             function (vote_component_1_1) {
                 vote_component_1 = vote_component_1_1;
             },
@@ -46,6 +46,15 @@ System.register(['./rxadventure.component', './zippy.component', './authors.comp
             },
             function (github_component_1_1) {
                 github_component_1 = github_component_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (year_component_1_1) {
+                year_component_1 = year_component_1_1;
+            },
+            function (month_component_1_1) {
+                month_component_1 = month_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -72,12 +81,42 @@ System.register(['./rxadventure.component', './zippy.component', './authors.comp
                     console.log($event);
                 };
                 AppComponent = __decorate([
+                    router_1.RouteConfig([
+                        { path: '/years', name: 'Year', component: year_component_1.YearComponent, useAsDefault: true },
+                        { path: '/months', name: 'Month', component: month_component_1.MonthComponent },
+                        { path: '/archives/:year/:month', name: 'Archive', component: month_component_1.MonthComponent },
+                        { path: '/*other', name: 'Other', redirectTo: ['Year'] }
+                    ]),
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n                <h1>Hello Angular</h1>\n                <br/>\n                 <github></github>\n                 <br/> <br/> \n                <Rx-Practice> </Rx-Practice>\n                <br/> \n                 <author></author>\n                 <favorite></favorite>\n                 \n                 <heartgly [total-like-count]= \"tweet.total\" [iLike]=\"tweet.iLike\"></heartgly>\n                 <vote [count]=\"post.voteCount\" [myVote]=\"post.myVote\" (vote)=\"voteChange($event)\"></vote>\n                 <tweet> </tweet>\n                 <zippy  *ngFor=\"#p of panels\">\n                    \n                        <div class=\"heading\"> {{p.head}}</div>\n                        <div class=\"body\">{{p.content}}</div>\n                    \n                    \n                 </zippy>\n                <subscription-form></subscription-form>\n                 <change-password-form></change-password-form>\n               ",
+                        templateUrl: '/app/app.component.html',
+                        // template: `
+                        //             <h1>Hello Angular</h1>
+                        //             <br/>
+                        //                 <year></year>
+                        //                 <month></month>
+                        //             <br/>
+                        //             <br/>
+                        //              <github></github>
+                        //              <br/> <br/> 
+                        //             <Rx-Practice> </Rx-Practice>
+                        //             <br/> 
+                        //              <author></author>
+                        //              <favorite></favorite>
+                        //              <heartgly [total-like-count]= "tweet.total" [iLike]="tweet.iLike"></heartgly>
+                        //              <vote [count]="post.voteCount" [myVote]="post.myVote" (vote)="voteChange($event)"></vote>
+                        //              <tweet> </tweet>
+                        //              <zippy  *ngFor="#p of panels">
+                        //                     <div class="heading"> {{p.head}}</div>
+                        //                     <div class="body">{{p.content}}</div>
+                        //              </zippy>
+                        //             <subscription-form></subscription-form>
+                        //              <change-password-form></change-password-form>
+                        //            `,
                         directives: [favorite_component_1.FavoriteComponent, authors_component_1.AuthorComponent, heart_component_1.HeartComponent,
                             vote_component_1.VoteComponent, tweet_component_1.TweetComponent, zippy_component_1.ZippyComponent,
-                            subscription_form_component_1.SubscriptionFormComponent, changepassword_component_1.ChangePasswordFormComponent, rxadventure_component_1.RxAdvantureComponent, github_component_1.GithubComponent]
+                            subscription_form_component_1.SubscriptionFormComponent, changepassword_component_1.ChangePasswordFormComponent, rxadventure_component_1.RxAdvantureComponent, github_component_1.GithubComponent,
+                            year_component_1.YearComponent, month_component_1.MonthComponent, router_1.ROUTER_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
