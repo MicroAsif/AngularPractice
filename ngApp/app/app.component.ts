@@ -7,15 +7,18 @@ import {Component} from 'angular2/core';
 import { NavbarComponent } from './navbar.component';
 import { PostComponent } from './post.component';
 import { NewUserComponent } from './newuser.component';
+import {NotFoundComponent} from './not-found.component';
 
 
 @RouteConfig([
 
     {path : '/users',  name : 'User', component: UserComponent}, 
+    { path: '/users/:id', name: 'EditUser', component: NewUserComponent },
     { path: '/users/new', name: 'NewUser', component: NewUserComponent },
     {path : '/posts', name : 'Post', component : PostComponent}, 
     {path : '/', name : 'Home', component : HouseComponent, useAsDefault: true}, 
-    {path : '/*other', name : 'Other', redirectTo : ['Home']}
+    {path : '/*other', name : 'Other', redirectTo : ['Home']},
+    { path: '/not-found', name: 'NotFound', component: NotFoundComponent }
 
     ])
     

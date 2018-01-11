@@ -23,7 +23,7 @@ import { RouterLink } from 'angular2/src/router/router_link';
                     <tr *ngFor="#u of users">
                         <td>{{u.name}}</td>
                         <td>{{u.email}}</td>
-                        <td> <a href="#" class="glyphicon glyphicon-edit"></a></td>
+                        <td><a [routerLink]="['EditUser', { id: u.id }]"><i class="glyphicon glyphicon-edit"></i> </a></td>
                         <td><a href="#" class="glyphicon glyphicon-trash"></a></td>
                     </tr>
                     </tbody>
