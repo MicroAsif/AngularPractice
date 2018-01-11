@@ -1,4 +1,4 @@
-System.register(['./user.service', 'angular2/core'], function(exports_1, context_1) {
+System.register(['./user.service', 'angular2/core', 'angular2/src/router/router_link'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['./user.service', 'angular2/core'], function(exports_1, context
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var user_service_1, core_1;
+    var user_service_1, core_1, router_link_1;
     var UserComponent;
     return {
         setters:[
@@ -19,6 +19,9 @@ System.register(['./user.service', 'angular2/core'], function(exports_1, context
             },
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (router_link_1_1) {
+                router_link_1 = router_link_1_1;
             }],
         execute: function() {
             UserComponent = (function () {
@@ -30,8 +33,9 @@ System.register(['./user.service', 'angular2/core'], function(exports_1, context
                 UserComponent = __decorate([
                     core_1.Component({
                         selector: 'user',
-                        template: "\n    \n                <h1> User </h1>\n\n            \n                <table class=\"table table-hover table-bordered\">\n                    <thead>\n                    <tr>\n                        <th>Firstname</th>\n                        <th>Lastname</th>\n                        <th>Edit</th>\n                        <th>Delete</th>\n                    </tr>\n                    </thead>\n                    <tbody>\n                    <tr *ngFor=\"#u of users\">\n                        <td>{{u.name}}</td>\n                        <td>{{u.email}}</td>\n                        <td> <a href=\"#\" class=\"glyphicon glyphicon-edit\"></a></td>\n                        <td><a href=\"#\" class=\"glyphicon glyphicon-trash\"></a></td>\n                    </tr>\n                    </tbody>\n                </table>\n\n                ",
-                        providers: [user_service_1.UserService]
+                        template: "\n    \n                <h1> User </h1>\n\n                <p>\n                    <a [routerLink]=\"['NewUser']\" class=\"btn btn-primary\">Add User</a>\n                </p>\n                <table class=\"table table-hover table-bordered\">\n                    <thead>\n                    <tr>\n                        <th>Firstname</th>\n                        <th>Lastname</th>\n                        <th>Edit</th>\n                        <th>Delete</th>\n                    </tr>\n                    </thead>\n                    <tbody>\n                    <tr *ngFor=\"#u of users\">\n                        <td>{{u.name}}</td>\n                        <td>{{u.email}}</td>\n                        <td> <a href=\"#\" class=\"glyphicon glyphicon-edit\"></a></td>\n                        <td><a href=\"#\" class=\"glyphicon glyphicon-trash\"></a></td>\n                    </tr>\n                    </tbody>\n                </table>\n\n                ",
+                        providers: [user_service_1.UserService],
+                        directives: [router_link_1.RouterLink]
                     }), 
                     __metadata('design:paramtypes', [user_service_1.UserService])
                 ], UserComponent);

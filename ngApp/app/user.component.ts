@@ -1,12 +1,15 @@
 import { UserService } from './user.service';
 import { Component } from 'angular2/core';
+import { RouterLink } from 'angular2/src/router/router_link';
 @Component({ 
     selector : 'user', 
     template : `
     
                 <h1> User </h1>
 
-            
+                <p>
+                    <a [routerLink]="['NewUser']" class="btn btn-primary">Add User</a>
+                </p>
                 <table class="table table-hover table-bordered">
                     <thead>
                     <tr>
@@ -27,7 +30,8 @@ import { Component } from 'angular2/core';
                 </table>
 
                 `, 
-                providers : [UserService]
+                providers : [UserService], 
+                directives : [RouterLink]
 })
 export class UserComponent {
 
