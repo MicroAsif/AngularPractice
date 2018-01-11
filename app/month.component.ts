@@ -8,8 +8,6 @@ import { RouteParams } from 'angular2/router';
              {{archive.year}} / {{archive.month}}
 
                  `
-
-
 })
 export class MonthComponent{
 

@@ -9,7 +9,7 @@ import { TweetComponent } from './tweet.component';
 import { SubscriptionFormComponent } from './subscription-form.component';
 import { ChangePasswordFormComponent } from './changepassword.component';
 import { GithubComponent } from './github.component';
-import { RouteConfig, ROUTER_DIRECTIVES } from "angular2/router";
+import { RouteConfig, ROUTER_DIRECTIVES, RouteParams } from "angular2/router";
 import { YearComponent } from "./year.component";
 import { MonthComponent } from "./month.component";
 
@@ -24,7 +24,7 @@ import { MonthComponent } from "./month.component";
 
 @Component({
     selector: 'my-app',
-     templateUrl: '/app/app.component.html',
+      templateUrl: 'app/app.component.html',
     // template: `
     //             <h1>Hello Angular</h1>
     //             <br/>

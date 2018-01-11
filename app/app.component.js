@@ -89,7 +89,7 @@ System.register(['angular2/core', './rxadventure.component', './zippy.component'
                     ]),
                     core_1.Component({
                         selector: 'my-app',
-                        templateUrl: '/app/app.component.html',
+                        templateUrl: 'app/app.component.html',
                         // template: `
                         //             <h1>Hello Angular</h1>
                         //             <br/>
