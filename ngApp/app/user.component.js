@@ -27,13 +27,31 @@ System.register(['./user.service', 'angular2/core', 'angular2/src/router/router_
             UserComponent = (function () {
                 function UserComponent(userService) {
                     var _this = this;
+                    this.userService = userService;
                     this.users = [];
                     userService.getUsers().subscribe(function (d) { return _this.users = d; });
                 }
+                UserComponent.prototype.deleteUser = function (user) {
+                    var _this = this;
+                    if (confirm("Are you sure you want to delete " + user.name + "?")) {
+                        var index = this.users.indexOf(user);
+                        // Here, with the splice method, we remove 1 object
+                        // at the given index.
+                        this.users.splice(index, 1);
+                        this.userService.deleteUser(user.id)
+                            .subscribe(null, function (err) {
+                            alert("Could not delete the user.");
+                            // Revert the view back to its original state
+                            // by putting the user object at the index
+                            // it used to be.
+                            _this.users.splice(index, 0, user);
+                        });
+                    }
+                };
                 UserComponent = __decorate([
                     core_1.Component({
                         selector: 'user',
-                        template: "\n    \n                <h1> User </h1>\n\n                <p>\n                    <a [routerLink]=\"['NewUser']\" class=\"btn btn-primary\">Add User</a>\n                </p>\n                <table class=\"table table-hover table-bordered\">\n                    <thead>\n                    <tr>\n                        <th>Firstname</th>\n                        <th>Lastname</th>\n                        <th>Edit</th>\n                        <th>Delete</th>\n                    </tr>\n                    </thead>\n                    <tbody>\n                    <tr *ngFor=\"#u of users\">\n                        <td>{{u.name}}</td>\n                        <td>{{u.email}}</td>\n                        <td><a [routerLink]=\"['EditUser', { id: u.id }]\"><i class=\"glyphicon glyphicon-edit\"></i> </a></td>\n                        <td><a href=\"#\" class=\"glyphicon glyphicon-trash\"></a></td>\n                    </tr>\n                    </tbody>\n                </table>\n\n                ",
+                        template: "\n    \n                <h1> User </h1>\n\n                <p>\n                    <a [routerLink]=\"['NewUser']\" class=\"btn btn-primary\">Add User</a>\n                </p>\n                <table class=\"table table-hover table-bordered\">\n                    <thead>\n                    <tr>\n                        <th>Firstname</th>\n                        <th>Lastname</th>\n                        <th>Edit</th>\n                        <th>Delete</th>\n                    </tr>\n                    </thead>\n                    <tbody>\n                    <tr *ngFor=\"#u of users\">\n                        <td>{{u.name}}</td>\n                        <td>{{u.email}}</td>\n                        <td><a [routerLink]=\"['EditUser', { id: u.id }]\"><i class=\"glyphicon glyphicon-edit\"></i> </a></td>\n                        <td> <i (click)=\"deleteUser(u)\" class=\"glyphicon glyphicon-remove clickable\"></i></td>\n                    </tr>\n                    </tbody>\n                </table>\n\n                ",
                         providers: [user_service_1.UserService],
                         directives: [router_link_1.RouterLink]
                     }), 

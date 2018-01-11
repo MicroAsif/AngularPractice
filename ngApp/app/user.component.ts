@@ -24,7 +24,7 @@ import { RouterLink } from 'angular2/src/router/router_link';
                         <td>{{u.name}}</td>
                         <td>{{u.email}}</td>
                         <td><a [routerLink]="['EditUser', { id: u.id }]"><i class="glyphicon glyphicon-edit"></i> </a></td>
-                        <td><a href="#" class="glyphicon glyphicon-trash"></a></td>
+                        <td> <i (click)="deleteUser(u)" class="glyphicon glyphicon-remove clickable"></i></td>
                     </tr>
                     </tbody>
                 </table>
@@ -36,7 +36,27 @@ import { RouterLink } from 'angular2/src/router/router_link';
 export class UserComponent {
 
     users = []; 
-    constructor(userService : UserService){
+    constructor(private userService : UserService){
         userService.getUsers().subscribe(d => this.users = d);
     }
+
+    
+    deleteUser(user){
+		if (confirm("Are you sure you want to delete " + user.name + "?")) {
+			var index = this.users.indexOf(user)
+			// Here, with the splice method, we remove 1 object
+            // at the given index.
+            this.users.splice(index, 1);
+
+			this.userService.deleteUser(user.id)
+				.subscribe(null, 
+					err => {
+						alert("Could not delete the user.");
+                        // Revert the view back to its original state
+                        // by putting the user object at the index
+                        // it used to be.
+						this.users.splice(index, 0, user);
+					});
+		}
+	}
 }
