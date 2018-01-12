@@ -1,4 +1,4 @@
-System.register(['./post.service', 'angular2/core'], function(exports_1, context_1) {
+System.register(['./spinner.component', './post.service', 'angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,10 +10,13 @@ System.register(['./post.service', 'angular2/core'], function(exports_1, context
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var post_service_1, core_1;
+    var spinner_component_1, post_service_1, core_1;
     var PostComponent;
     return {
         setters:[
+            function (spinner_component_1_1) {
+                spinner_component_1 = spinner_component_1_1;
+            },
             function (post_service_1_1) {
                 post_service_1 = post_service_1_1;
             },
@@ -28,10 +31,15 @@ System.register(['./post.service', 'angular2/core'], function(exports_1, context
                     this.isLoading = true;
                     postService.getPost().subscribe(function (p) { return _this.posts = p; }, null, function () { _this.isLoading = false; });
                 }
+                PostComponent.prototype.select = function (p) {
+                    this.currentPost = p;
+                };
                 PostComponent = __decorate([
                     core_1.Component({
                         selector: 'post',
-                        template: "\n        <h1> Post </h1>\n        <i *ngIf=\"isLoading\" class=\"fa fa-spinner fa-spin fa-3x\"></i>\n        <ul class=\"list-group\">\n            <li *ngFor=\"#p of posts\" class=\"list-group-item\">{{ p.title }}</li>\n        </ul>\n    ",
+                        template: "\n        <h1> Post </h1>\n        <spinner [visible]=\"isLoading\"> </spinner>\n        <div class=\"row\"> \n            <div class=\"col-md-6\"> \n                <ul class=\"list-group posts\">\n                    <li *ngFor=\"#p of posts\" \n                    [class.active]=\"currentPost == p\"\n                    (click)=\"select(p)\"\n                    class=\"list-group-item\">{{ p.title }}></li>\n                </ul>\n            </div>\n                <div class=\"col-md-6\"> \n                    <div *ngIf=\"currentPost\" class=\"panel panel-default\">\n                        <div class=\"panel-heading\">\n                            <h3 class=\"panel-title\">{{ currentPost.title }}</h3>\n                        </div>\n                    <div class=\"panel-body\">\n                        <p>{{ currentPost.body }}</p>\n                    </div>\n                </div>\n            </div>\n        </div>\n            ",
+                        styles: ["\n        .posts li { cursor: default; }\n        .posts li:hover { background: #ecf0f1; } \n        .list-group-item.active, \n        .list-group-item.active:hover, \n        .list-group-item.active:focus { \n        background-color: #ecf0f1;\n        border-color: #ecf0f1; \n        color: #2c3e50;\n    \n    "],
+                        directives: [spinner_component_1.SpinnerComponent],
                         providers: [post_service_1.PostService]
                     }), 
                     __metadata('design:paramtypes', [post_service_1.PostService])
