@@ -1,4 +1,4 @@
-System.register(['./spinner.component', './post.service', 'angular2/core'], function(exports_1, context_1) {
+System.register(['./spinner.component', './post.service', 'angular2/core', './user.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['./spinner.component', './post.service', 'angular2/core'], func
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var spinner_component_1, post_service_1, core_1;
+    var spinner_component_1, post_service_1, core_1, user_service_1;
     var PostComponent;
     return {
         setters:[
@@ -22,16 +22,35 @@ System.register(['./spinner.component', './post.service', 'angular2/core'], func
             },
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (user_service_1_1) {
+                user_service_1 = user_service_1_1;
             }],
         execute: function() {
             PostComponent = (function () {
-                function PostComponent(postService) {
-                    var _this = this;
+                function PostComponent(postService, userService) {
                     this.postService = postService;
+                    this.userService = userService;
+                    this.users = [];
                     this.posts = [];
-                    this.isPostLoading = true;
-                    postService.getPost().subscribe(function (p) { return _this.posts = p; }, null, function () { _this.isPostLoading = false; });
+                    this.loadUsers();
+                    this.loadPosts();
                 }
+                PostComponent.prototype.loadPosts = function (filter) {
+                    var _this = this;
+                    this.isPostLoading = true;
+                    this.postService.getPosts(filter)
+                        .subscribe(function (posts) { return _this.posts = posts; }, null, function () { _this.isPostLoading = false; });
+                };
+                PostComponent.prototype.loadUsers = function () {
+                    var _this = this;
+                    this.userService.getUsers()
+                        .subscribe(function (users) { return _this.users = users; });
+                };
+                PostComponent.prototype.reloadPosts = function (filter) {
+                    this.currentPost = null;
+                    this.loadPosts(filter);
+                };
                 PostComponent.prototype.select = function (p) {
                     var _this = this;
                     this.isCommentLoading = true;
@@ -46,12 +65,12 @@ System.register(['./spinner.component', './post.service', 'angular2/core'], func
                 PostComponent = __decorate([
                     core_1.Component({
                         selector: 'post',
-                        template: "\n        <h1> Post </h1>\n        <spinner [visible]=\"isPostLoading\"> </spinner>\n        <div class=\"row\"> \n            <div class=\"col-md-6\"> \n                <ul class=\"list-group posts\">\n                    <li *ngFor=\"#p of posts\" \n                    [class.active]=\"currentPost == p\"\n                    (click)=\"select(p)\"\n                    class=\"list-group-item\">{{ p.title }}</li>\n                </ul>\n            </div>\n                <div class=\"col-md-6\"> \n                    <div *ngIf=\"currentPost\" class=\"panel panel-default\">\n                        <div class=\"panel-heading\">\n                            <h3 class=\"panel-title\">{{ currentPost.title }}</h3>\n                        </div>\n                    <div class=\"panel-body\">\n                        <p>{{ currentPost.body }}</p>\n                        <hr/>\n                        <spinner [visible]=\"isCommentLoading\"> </spinner>\n                        <div class=\"media\" *ngFor=\"#comment of currentPost.comments\">\n                            <div class=\"media-left\">\n                                <a href=\"#\">\n                                    <img class=\"media-object thumbnail\" src=\"http://lorempixel.com/80/80/people?random={{ comment.id }}\" alt=\"...\">\n                                </a>\n                            </div>\n                            <div class=\"media-body\">\n                                <h4 class=\"media-heading\">\n                                    {{ comment.name }}\n                                </h4> \n                                {{ comment.body }}\n                            </div>\n                        \n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n            ",
+                        template: "\n        <h1> Post </h1>\n        <spinner [visible]=\"isPostLoading\"> </spinner>\n        <div class=\"row\"> \n            <div class=\"col-md-6\">\n                <select class=\"form-control\" (change)=\"reloadPosts({ userId: u.value })\" #u>\n                    <option value=\"\">Select a user...</option>\n                    <option *ngFor=\"#user of users\" value=\"{{ user.id }}\">\n                        {{ user.name }}\n                    </option>\n                </select>\n                <br/>\n                <ul class=\"list-group posts\">\n                    <li *ngFor=\"#p of posts\" \n                    [class.active]=\"currentPost == p\"\n                    (click)=\"select(p)\"\n                    class=\"list-group-item\">{{ p.title }}</li>\n                </ul>\n            </div>\n                <div class=\"col-md-6\"> \n                    <div *ngIf=\"currentPost\" class=\"panel panel-default\">\n                        <div class=\"panel-heading\">\n                            <h3 class=\"panel-title\">{{ currentPost.title }}</h3>\n                        </div>\n                    <div class=\"panel-body\">\n                        <p>{{ currentPost.body }}</p>\n                        <hr/>\n                        <spinner [visible]=\"isCommentLoading\"> </spinner>\n                        <div class=\"media\" *ngFor=\"#comment of currentPost.comments\">\n                            <div class=\"media-left\">\n                                <a href=\"#\">\n                                    <img class=\"media-object thumbnail\" src=\"http://lorempixel.com/80/80/people?random={{ comment.id }}\" alt=\"...\">\n                                </a>\n                            </div>\n                            <div class=\"media-body\">\n                                <h4 class=\"media-heading\">\n                                    {{ comment.name }}\n                                </h4> \n                                {{ comment.body }}\n                            </div>\n                        \n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n            ",
                         styles: ["\n        .posts li { cursor: default; }\n        .posts li:hover { background: #ecf0f1; } \n        .list-group-item.active, \n        .list-group-item.active:hover, \n        .list-group-item.active:focus { \n        background-color: #ecf0f1;\n        border-color: #ecf0f1; \n        color: #2c3e50;\n    \n    "],
                         directives: [spinner_component_1.SpinnerComponent],
-                        providers: [post_service_1.PostService]
+                        providers: [post_service_1.PostService, user_service_1.UserService]
                     }), 
-                    __metadata('design:paramtypes', [post_service_1.PostService])
+                    __metadata('design:paramtypes', [post_service_1.PostService, user_service_1.UserService])
                 ], PostComponent);
                 return PostComponent;
             }());

@@ -1,13 +1,21 @@
 import { SpinnerComponent } from './spinner.component';
 import { PostService } from './post.service';
 import { Component } from 'angular2/core';
+import { UserService } from './user.service';
 @Component({ 
     selector : 'post', 
     template : `
         <h1> Post </h1>
         <spinner [visible]="isPostLoading"> </spinner>
         <div class="row"> 
-            <div class="col-md-6"> 
+            <div class="col-md-6">
+                <select class="form-control" (change)="reloadPosts({ userId: u.value })" #u>
+                    <option value="">Select a user...</option>
+                    <option *ngFor="#user of users" value="{{ user.id }}">
+                        {{ user.name }}
+                    </option>
+                </select>
+                <br/>
                 <ul class="list-group posts">
                     <li *ngFor="#p of posts" 
                     [class.active]="currentPost == p"
@@ -55,19 +63,39 @@ import { Component } from 'angular2/core';
     
     `],
     directives : [SpinnerComponent],
-    providers: [PostService]
+    providers: [PostService, UserService]
 })
 
 export class PostComponent { 
+ users = [];
  posts = [];
- isPostLoading = true;
+ isPostLoading ;
  isCommentLoading; 
  currentPost; 
 
- constructor(private postService: PostService){
-     postService.getPost().subscribe(p => this.posts=p,
-     null,
-    () => { this.isPostLoading = false; });
+ constructor(private postService: PostService, 
+            private userService: UserService)
+            {
+                this.loadUsers();
+                this.loadPosts();
+            }
+
+    private loadPosts(filter?){
+        this.isPostLoading = true; 
+		this.postService.getPosts(filter)
+			.subscribe(
+                posts => this.posts = posts,
+                null,
+                () => { this.isPostLoading = false; });
+    }
+    private loadUsers(){ 
+        this.userService.getUsers()
+            .subscribe(users => this.users = users);
+    }
+    reloadPosts(filter){
+        this.currentPost = null;
+        
+        this.loadPosts(filter);
     }
 
     select(p){

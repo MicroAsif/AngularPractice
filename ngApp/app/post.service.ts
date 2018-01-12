@@ -9,10 +9,18 @@ export class PostService{
         
     }
 
-    getPost(){
-        return this.http.get(this.posts).map(data => data.json());
+
+    getPosts(filter?) {
+        var url = this.posts;
         
-    }
+        if (filter && filter.userId)
+            url += "?userId=" + filter.userId;
+        
+		return this.http.get(url)
+			.map(res => res.json());
+	}
+
+   
     getComments(postId){
 		return this.http.get(this.posts + "/" + postId + "/comments")
 			.map(res => res.json());
