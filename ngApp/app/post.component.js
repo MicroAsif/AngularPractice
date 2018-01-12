@@ -27,17 +27,26 @@ System.register(['./spinner.component', './post.service', 'angular2/core'], func
             PostComponent = (function () {
                 function PostComponent(postService) {
                     var _this = this;
+                    this.postService = postService;
                     this.posts = [];
-                    this.isLoading = true;
-                    postService.getPost().subscribe(function (p) { return _this.posts = p; }, null, function () { _this.isLoading = false; });
+                    this.isPostLoading = true;
+                    postService.getPost().subscribe(function (p) { return _this.posts = p; }, null, function () { _this.isPostLoading = false; });
                 }
                 PostComponent.prototype.select = function (p) {
+                    var _this = this;
+                    this.isCommentLoading = true;
                     this.currentPost = p;
+                    this.postService.getComments(p.id)
+                        .subscribe(function (comments) {
+                        return _this.currentPost.comments = comments;
+                    }, null, function () {
+                        _this.isCommentLoading = false;
+                    });
                 };
                 PostComponent = __decorate([
                     core_1.Component({
                         selector: 'post',
-                        template: "\n        <h1> Post </h1>\n        <spinner [visible]=\"isLoading\"> </spinner>\n        <div class=\"row\"> \n            <div class=\"col-md-6\"> \n                <ul class=\"list-group posts\">\n                    <li *ngFor=\"#p of posts\" \n                    [class.active]=\"currentPost == p\"\n                    (click)=\"select(p)\"\n                    class=\"list-group-item\">{{ p.title }}></li>\n                </ul>\n            </div>\n                <div class=\"col-md-6\"> \n                    <div *ngIf=\"currentPost\" class=\"panel panel-default\">\n                        <div class=\"panel-heading\">\n                            <h3 class=\"panel-title\">{{ currentPost.title }}</h3>\n                        </div>\n                    <div class=\"panel-body\">\n                        <p>{{ currentPost.body }}</p>\n                    </div>\n                </div>\n            </div>\n        </div>\n            ",
+                        template: "\n        <h1> Post </h1>\n        <spinner [visible]=\"isPostLoading\"> </spinner>\n        <div class=\"row\"> \n            <div class=\"col-md-6\"> \n                <ul class=\"list-group posts\">\n                    <li *ngFor=\"#p of posts\" \n                    [class.active]=\"currentPost == p\"\n                    (click)=\"select(p)\"\n                    class=\"list-group-item\">{{ p.title }}</li>\n                </ul>\n            </div>\n                <div class=\"col-md-6\"> \n                    <div *ngIf=\"currentPost\" class=\"panel panel-default\">\n                        <div class=\"panel-heading\">\n                            <h3 class=\"panel-title\">{{ currentPost.title }}</h3>\n                        </div>\n                    <div class=\"panel-body\">\n                        <p>{{ currentPost.body }}</p>\n                        <hr/>\n                        <spinner [visible]=\"isCommentLoading\"> </spinner>\n                        <div class=\"media\" *ngFor=\"#comment of currentPost.comments\">\n                            <div class=\"media-left\">\n                                <a href=\"#\">\n                                    <img class=\"media-object thumbnail\" src=\"http://lorempixel.com/80/80/people?random={{ comment.id }}\" alt=\"...\">\n                                </a>\n                            </div>\n                            <div class=\"media-body\">\n                                <h4 class=\"media-heading\">\n                                    {{ comment.name }}\n                                </h4> \n                                {{ comment.body }}\n                            </div>\n                        \n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n            ",
                         styles: ["\n        .posts li { cursor: default; }\n        .posts li:hover { background: #ecf0f1; } \n        .list-group-item.active, \n        .list-group-item.active:hover, \n        .list-group-item.active:focus { \n        background-color: #ecf0f1;\n        border-color: #ecf0f1; \n        color: #2c3e50;\n    \n    "],
                         directives: [spinner_component_1.SpinnerComponent],
                         providers: [post_service_1.PostService]

@@ -13,4 +13,8 @@ export class PostService{
         return this.http.get(this.posts).map(data => data.json());
         
     }
+    getComments(postId){
+		return this.http.get(this.posts + "/" + postId + "/comments")
+			.map(res => res.json());
+	}
 }
